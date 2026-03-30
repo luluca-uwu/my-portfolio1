@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đèn kéo quân</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+    body {
+        background: radial-gradient(circle, #111, #000);
+        color: white;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+
+    .scene {
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+        perspective: 1000px;
+        position: relative;
+    }
+
+    /* Đèn */
+    .lantern {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotate 12s infinite linear;
+    }
+
+    .lantern:hover {
+        animation-play-state: paused;
+    }
+
+    /* ÁNH SÁNG BÊN TRONG */
+    .light {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120px;
+        height: 120px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255,200,100,0.9), transparent);
+        border-radius: 50%;
+        filter: blur(20px);
+        z-index: 0;
+	animation: flicker 2s infinite alternate;
+    }
+
+    /* Các mặt */
+    .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(255,200,100,0.4);
+	backdrop-filter: blur(2px);
+    }
+
+    .face img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+    }
+
+    /* 6 mặt */
+    .face:nth-child(2) { transform: rotateY(0deg) translateZ(150px); }
+    .face:nth-child(3) { transform: rotateY(60deg) translateZ(150px); }
+    .face:nth-child(4) { transform: rotateY(120deg) translateZ(150px); }
+    .face:nth-child(5) { transform: rotateY(180deg) translateZ(150px); }
+    .face:nth-child(6) { transform: rotateY(240deg) translateZ(150px); }
+    .face:nth-child(7) { transform: rotateY(300deg) translateZ(150px); }
+
+    /* BÓNG ĐỔ */
+    .shadow {
+        position: absolute;
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 40px;
+        background: radial-gradient(circle, rgba(255,200,100,0.4), transparent);
+        filter: blur(20px);
+    }
+
+    @keyframes rotate {
+        from { transform: rotateY(0deg); }
+        to { transform: rotateY(360deg); }
+    }
+	
+	@keyframes flicker {
+    from { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+</style>
+</head>
+<body>
+
+<h1>🎆 Đèn kéo quân</h1>
+
+<div class="scene">
+    <div class="lantern">
+
+        <!-- ánh sáng -->
+        <div class="light"></div>
+
+        <!-- 6 mặt -->
+        <div class="face"><img src="images/1.jpg"></div>
+        <div class="face"><img src="images/2.jpg"></div>
+        <div class="face"><img src="images/3.jpg"></div>
+        <div class="face"><img src="images/4.jpg"></div>
+        <div class="face"><img src="images/5.jpg"></div>
+        <div class="face"><img src="images/6.jpg"></div>
+
+    </div>
+
+    <!-- bóng -->
+    <div class="shadow"></div>
+</div>
+
+<p>👉 Rê chuột vào để dừng</p>
+
+</body>
+</html>
